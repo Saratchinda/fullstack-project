@@ -1,13 +1,19 @@
 import axios from 'axios';
 
+// Création d'une instance Axios avec une base URL configurée
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'http://localhost:8000/api', // URL de base pour toutes les requêtes API
 });
 
-export const getProduits = () => api.get('/produits');
-export const getCategories = () => api.get('/categories');
-export const createProduit = (data) => api.post('/produits', data);
-export const updateProduit = (id, data) => api.put(`/produits/${id}`, data);
-export const deleteProduit = (id) => api.delete(`/produits/${id}`);
+// Exportation des fonctions pour interagir avec l'API
+export const getProduits = async () => {
+  const response = await api.get('/produits'); // Récupère les produits
+  return response.data;
+};
+
+export const postProduit = async (produit) => {
+  const response = await api.post('/produits', produit); // Ajoute un nouveau produit
+  return response.data;
+};
 
 export default api;

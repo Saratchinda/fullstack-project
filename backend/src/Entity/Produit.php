@@ -23,8 +23,10 @@ class Produit
     #[ORM\Column]
     private ?float $prix = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $categorie = null;
+    // Modification pour établir la relation avec la catégorie
+    #[ORM\ManyToOne(targetEntity: Categorie::class)]
+    #[ORM\JoinColumn(nullable: false)] // si une catégorie est toujours nécessaire
+    private ?Categorie $categorie = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $dateCreation = null;
@@ -70,7 +72,8 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): ?string
+    // Getter et setter pour la relation avec Categorie
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
