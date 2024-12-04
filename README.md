@@ -23,12 +23,10 @@ L'objectif de ce projet est de créer une application complète avec une sépara
 
 - **Back-end :**
   - Symfony (API Platform pour la gestion des ressources)
-  - Doctrine ORM pour la gestion des données
   - MySQL pour la base de données
 - **Front-end :**
   - React.js pour l'interface utilisateur
   - Axios pour la gestion des requêtes HTTP
-  - Bootstrap pour le style de l'interface
 - **Outils de développement :**
   - Composer pour la gestion des dépendances PHP
   - npm pour la gestion des dépendances JavaScript
