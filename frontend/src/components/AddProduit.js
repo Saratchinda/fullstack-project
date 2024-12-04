@@ -1,46 +1,42 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createProduit } from '../features/produitSlice';
+import axios from 'axios';
 
 function AddProduit() {
-  const dispatch = useDispatch();
   const [nom, setNom] = useState('');
-  const [description, setDescription] = useState('');
   const [prix, setPrix] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createProduit({ nom, description, prix: parseFloat(prix) }));
-    setNom('');
-    setDescription('');
-    setPrix('');
+    try {
+      const response = await axios.post('http://localhost:8000/api/produits', {
+        nom,
+        prix,
+      });
+      console.log('Produit ajouté :', response.data);
+      setNom('');
+      setPrix('');
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout du produit :', error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Nom"
+        placeholder="Nom du produit"
         value={nom}
         onChange={(e) => setNom(e.target.value)}
         required
       />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
       <input
         type="number"
-        placeholder="Prix"
+        placeholder="Prix du produit"
         value={prix}
         onChange={(e) => setPrix(e.target.value)}
         required
       />
-      <button type="submit" className="bg-green-500 text-white px-4 py-2">
-        Ajouter
-      </button>
+      <button type="submit">Ajouter Produit</button>
     </form>
   );
 }

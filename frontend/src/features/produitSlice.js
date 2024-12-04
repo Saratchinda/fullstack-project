@@ -20,12 +20,10 @@ export const deleteProduit = createAsyncThunk('produits/deleteProduit', async (i
 });
 
 export const updateProduit = createAsyncThunk('produits/updateProduit', async (produit) => {
-    const response = await axios.put(`${API_URL}/${produit.id}`, produit);
-    return response.data;
-  });
-  
+  const response = await axios.put(`${API_URL}/${produit.id}`, produit);
+  return response.data;
+});
 
-// Slice Redux
 const produitSlice = createSlice({
   name: 'produits',
   initialState: {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { updateProduit } from '../features/produitSlice';
 
 function EditProduit({ produit, onCancel }) {
@@ -11,7 +11,7 @@ function EditProduit({ produit, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProduit({ id: produit.id, nom, description, prix: parseFloat(prix) }));
-    onCancel(); // Ferme le formulaire d'édition après mise à jour
+    onCancel();
   };
 
   return (

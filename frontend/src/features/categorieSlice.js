@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// URL de l'API Symfony
 const API_URL = 'http://localhost:8000/api/categories';
 
 export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {
